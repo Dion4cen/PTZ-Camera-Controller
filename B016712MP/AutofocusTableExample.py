@@ -32,6 +32,21 @@ from datetime import datetime
 auto_focus_map = []
 auto_focus_idx = 0
 
+
+#interface
+def show_confirmation_dialog(stdscr):
+    stdscr.clear()
+    stdscr.addstr(0, 0, "Generate focus table? (y/n)")
+    stdscr.refresh()
+    while True:
+        k = stdscr.getch()
+        if k == ord('y') or k == ord('Y'):
+            return True
+        elif k == ord('n') or k == ord('N'):
+            stdscr.erase()
+            stdscr.refresh()
+            return False
+
 class zoom_focus_data:
     def __init__(self):
         self.zoom = 0
@@ -73,7 +88,7 @@ def RenderMiddleText(stdscr,k,focuser):
     title = "Arducam Controller"[:width-1]
     subtitle = ""[:width-1]
     keystr = "Last key pressed: {}".format(k)[:width-1]
-    
+
     # Obtain device infomation
     focus_value = "Focus    : {}".format(focuser.get(Focuser.OPT_FOCUS))[:width-1]
     zoom_value  = "Zoom     : {}".format(focuser.get(Focuser.OPT_ZOOM))[:width-1]
@@ -155,9 +170,14 @@ def parseKeyByMap(stdscr,k,focuser:Focuser,camera):
         formatted_time = current_time.strftime("%Y-%m-%d_%H-%M-%S")
         cv2.imwrite("image{}.jpg".format(formatted_time), camera.getFrame())
     elif k == ord('f') or k == ord('F'):
-        genFocusMap(stdscr,focuser,camera)
-        focuser.waitingForFree()
-        foucusMapLoad(stdscr,focuser,camera)
+        confirmed = show_confirmation_dialog(stdscr)
+        if confirmed:
+            genFocusMap(stdscr, focuser, camera)
+            focuser.waitingForFree()
+            foucusMapLoad(stdscr, focuser, camera)
+        # genFocusMap(stdscr,focuser,camera)
+        # focuser.waitingForFree()
+        # foucusMapLoad(stdscr,focuser,camera)
 
 def genFocusMap(stdscr,focuser,camera):
     stdscr.clear()

@@ -15,7 +15,6 @@ git clone https://github.com/ArduCAM/PTZ-Camera-Controller.git
 
 ## Install libcamera
 * cd PTZ-Camera-Controller
-* python3 -m pip install ./libcamera-1.0.2-cp39-cp39-linux_armv7l.whl
 
 ## Add camera
 * Edit the configuration file: sudo nano /boot/config.txt
