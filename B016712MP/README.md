@@ -11,17 +11,20 @@
 * sudo apt install python3-numpy
 
 
+
 ## Download the source code 
 
 ```bash
 git clone https://github.com/ArduCAM/PTZ-Camera-Controller.git
 ```
 
+
 ## Enable the camera module
 
 * Edit the configuration file: **sudo nano /boot/config.txt**
 * Find the line: **camera_auto_detect=1**, update it to: **camera_auto_detect=0**
 * Add the entry under the line [all] at the bottom: **dtoverlay=imx477**
+
 * Save and exit
 
 ## Enable i2c
@@ -31,6 +34,7 @@ git clone https://github.com/ArduCAM/PTZ-Camera-Controller.git
 * ./enable_i2c_vc.sh
 Press Y to reboot -->
 1. `sudo raspi-config`
+
 2. Select **Interface Options** and enter
 
 ![select Interface Option](../data/select%20interface%20options.png)
@@ -45,12 +49,15 @@ Press Y to reboot -->
 
 5. exit and reboot your Pi to take effect
 
+
 ## Run the FocuserExample.py
 
 * cd PTZ-Camera-Controller/B016712MP
 * python3 FocuserExample.py
 
+
 > Please note that after opening the program, press the `T` key first and wait for about 8 seconds. The mode will switch from '**Fix**' to '**Adjust**'. At this point, you can use the keyboard to control Zoom, Focus, IR-CUT, etc.
+
 
 ![Alt text](../data/Arducam%20Controller1.png)
 
@@ -61,6 +68,7 @@ Press Y to reboot -->
 
 > If you're running the program for the first time, place the camera in the desired position and wait five minutes for the camera to generate a focus chart.
 
+
 ![Alt text](../data/Focuser%20AutoFocus.png)
 
 ### Generate autofocus configuration
@@ -70,6 +78,7 @@ The program will automatically read the autofocus file when it starts. If the fi
 When entering the program to generate the auto-zoom focus configuration, please ensure that the camera is fixed on the desired area for photography.
 
 If the resulting configuration does not yield satisfactory results, press F to regenerate the configuration.
+
 
 > Note:
 >
@@ -331,4 +340,5 @@ If the resulting configuration does not yield satisfactory results, press F to r
 ## Refering the link to get more information about the PTZ-Camera-Controller
 
 [Pan/Tilt/Zoom Camera](http://www.arducam.com/docs/cameras-for-raspberry-pi/ptz-camera/)
+
 

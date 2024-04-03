@@ -32,7 +32,6 @@ from datetime import datetime
 auto_focus_map = []
 auto_focus_idx = 0
 
-
 #interface
 def show_confirmation_dialog(stdscr):
     stdscr.clear()
@@ -170,6 +169,7 @@ def parseKeyByMap(stdscr,k,focuser:Focuser,camera):
         formatted_time = current_time.strftime("%Y-%m-%d_%H-%M-%S")
         cv2.imwrite("image{}.jpg".format(formatted_time), camera.getFrame())
     elif k == ord('f') or k == ord('F'):
+
         confirmed = show_confirmation_dialog(stdscr)
         if confirmed:
             genFocusMap(stdscr, focuser, camera)
@@ -178,6 +178,7 @@ def parseKeyByMap(stdscr,k,focuser:Focuser,camera):
         # genFocusMap(stdscr,focuser,camera)
         # focuser.waitingForFree()
         # foucusMapLoad(stdscr,focuser,camera)
+
 
 def genFocusMap(stdscr,focuser,camera):
     stdscr.clear()
